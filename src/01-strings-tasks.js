@@ -1,6 +1,6 @@
 /* *******************************************************************************************
  *                                                                                           *
- * Plese read the following tutorial before implementing tasks:                              *
+ * Please read the following tutorial before implementing tasks:                              *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String   *
  *                                                                                           *
  ******************************************************************************************* */
@@ -223,8 +223,21 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  function code(x) {
+    const charInAlphabet = 26;
+    if (x.charCodeAt(0) < 65 || x.charCodeAt(0) > 122) return String.fromCharCode(x.charCodeAt(0));
+    const codedCharCode = x.charCodeAt(0) + 13;
+    const caseFactor = x.charCodeAt(0) < 91 ? 90 : 122;
+    if (caseFactor === 122) {
+      const charCode = codedCharCode > caseFactor ? codedCharCode - charInAlphabet : codedCharCode;
+      return String.fromCharCode(charCode);
+    }
+    const charCode = codedCharCode > caseFactor ? codedCharCode - charInAlphabet : codedCharCode;
+    return String.fromCharCode(charCode);
+  }
+  const codedStr = str.split('').map((x) => code(x));
+  return codedStr.join('');
 }
 
 /**
