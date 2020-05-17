@@ -147,6 +147,15 @@ function getStringsLength(arr) {
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
 function insertItem(/* arr, item, index */) {
+  // if (index === 0) {
+  //   arr.unshift(item);
+  //   return arr;
+  // }
+  // if (index === arr.length - 1) return arr.push(item);
+  // const arrLeft = arr.slice(0, index);
+  // const arrRight = arr.slice(index);
+  // arrLeft.push(item);
+  // return arrLeft.concat(arrRight);
   throw new Error('Not implemented');
 }
 
@@ -160,8 +169,8 @@ function insertItem(/* arr, item, index */) {
  *    [ 1, 3, 4, 5 ], 2 => [ 1, 3 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'a', 'b', 'c' ]
  */
-function getHead(/* arr, n */) {
-  throw new Error('Not implemented');
+function getHead(arr, n) {
+  return arr.slice(0, n);
 }
 
 
@@ -175,13 +184,13 @@ function getHead(/* arr, n */) {
  *    [ 1, 3, 4, 5 ], 2  => [ 4, 5 ]
  *    [ 'a', 'b', 'c', 'd'], 3  => [ 'b', 'c', 'd' ]
  */
-function getTail(/* arr, n */) {
-  throw new Error('Not implemented');
+function getTail(arr, n) {
+  return arr.slice(-n);
 }
 
 
 /**
- * Returns CSV represebtation of two-dimentional numeric array.
+ * Returns CSV representation of two-dimentional numeric array.
  * https://en.wikipedia.org/wiki/Comma-separated_values
  *
  * @param {array} arr
@@ -215,8 +224,8 @@ function toCsvText(/* arr */) {
  *   [ 0, 1, 2, 3, 4, 5 ] => [ 0, 1, 4, 9, 16, 25 ]
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
-function toArrayOfSquares(/* arr */) {
-  throw new Error('Not implemented');
+function toArrayOfSquares(arr) {
+  return arr.map((x) => x * x);
 }
 
 
@@ -249,8 +258,8 @@ function getMovingSum(/* arr */) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  return arr.filter((x, i) => i % 2 !== 0);
 }
 
 
@@ -304,8 +313,10 @@ function get3TopItems(/* arr */) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  const arrNumbers = arr.filter((x) => typeof x === 'number');
+  const arrPositiveNumbers = arrNumbers.filter((x) => x > 0);
+  return arrPositiveNumbers.length;
 }
 
 /**
@@ -337,8 +348,9 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  if (!arr.length) return 0;
+  return arr.reduce((sum, current) => sum + current);
 }
 
 /**
@@ -353,8 +365,9 @@ function getItemsSum(/* arr */) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  if (!arr.length) return 0;
+  return arr.filter((x) => !x).length;
 }
 
 /**
@@ -371,12 +384,12 @@ function getFalsyValuesCount(/* arr */) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurences(arr, item) {
+  return arr.filter((x) => x === item).length;
 }
 
 /**
- * Concatenates all elements from specified array into single string with ',' delimeter
+ * Concatenates all elements from specified array into single string with ',' delimiter
  *
  * @param {array} arr
  * @return {string}
@@ -386,8 +399,8 @@ function findAllOccurences(/* arr, item */) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join(',');
 }
 
 
